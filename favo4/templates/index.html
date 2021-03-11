@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}テオ{% endblock %}
+{% block header %}
+    <p>手と繋いでいてよ</p>
+{% endblock %}
+{% block contents %}
+<p>テオ</p>
+    <a href="{% url 'favo4:F4-list' %}">リスト</a>
+{#    <a href="{% url 'favo4:F4-detail'何かしらのpk %}">詳細</a>#}
+    <a href="{% url 'account_signup' %}">サインアップ</a>
+    <a href="{% url 'account_login' %}">ログイン</a>
+    <a href="{% url 'account_logout' %}">ログアウト</a>
+{% endblock %}

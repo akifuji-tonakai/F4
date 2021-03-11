@@ -1,0 +1,22 @@
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'sass/test.css' %}" rel="stylesheet" type="text/css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div class="wrapper">
+{#header↓全ページheader#}
+    <h1>F4</h1>
+{#header↓個別ページのheader設定#}
+{% block header %}{% endblock %}
+{#content#}
+{% block contents %}{% endblock %}
+</div>
+</body>
+</html>

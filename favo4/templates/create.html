@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+
+{% block contents %}
+<!-- ファイルをあつかうので、enctype="multipart/form-data" が必要 -->
+<form action="" method="post" enctype="multipart/form-data">
+    <h2>記事</h2>
+    {{ form.as_p }}
+        {% csrf_token %}
+    <h2>添付ファイル</h2>
+    {{ formset.management_form }}
+    {% for chara_form in formset %}
+        {{ chara_form.as_p }}
+        <hr>
+    {% endfor %}
+
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">送信</button>
+</form>
+{% endblock %}

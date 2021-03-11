@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}リスト{% endblock %}
+{% block contents %}
+{% for list in content_list %}
+    <a href="{% url 'favo4:F4-detail' list.pk%}">
+    {{ list.title }}
+    </a>
+{% endfor %}
+{% endblock %}
