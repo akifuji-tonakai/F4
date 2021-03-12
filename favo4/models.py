@@ -23,5 +23,7 @@ class Chara(models.Model):
     class Meta:
         verbose_name_plural = 'Chara'
 
-    # def __str__(self):
-    #     return self.chara_name
+
+class PostTwi(models.Model):
+    user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.CASCADE)
+    chara_name = models.ForeignKey(Chara, verbose_name='キャラ名', on_delete=models.CASCADE)

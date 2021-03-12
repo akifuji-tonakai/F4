@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib import messages
-from .models import Content, Chara
+from .models import Content, Chara, PostTwi
 from django.urls import reverse_lazy
 from extra_views import CreateWithInlinesView, InlineFormSet
-from .forms import ContentCreateForm, CharaFormset
+from .forms import ContentCreateForm, CharaFormset, PostTwiForm
+from . import forms
+from django.template.context_processors import csrf
 # Create your views here.
 
 
@@ -22,12 +24,6 @@ class F4DetailView(generic.DetailView):
     template_name = "detail.html"
     model = Content
 
-    def get_context_data(self, **kwargs):
-        context = super(F4DetailView, self).get_context_data(**kwargs)
-        context.update({
-            'object_list2': Chara.objects.all(),
-        })
-        return context
 
 # class CharaInlineFormSet(InlineFormSet):
 #     model = Chara
@@ -80,3 +76,34 @@ def add_content(request):
         context['formset'] = CharaFormset()
 
     return render(request, 'create.html', context)
+
+
+# class F4PostTwiView(generic.CreateView):
+#     model = PostTwi
+#     template_name = "post-twi.html"
+
+
+def f4_post_twi_view(request, pk):
+    labels = ['チェック','複数チェック','ラジオボタン','動的選択肢１','動的選択肢２']
+    # 入力結果を格納する辞書
+    results = {}
+    ret = ''
+    if request.method == 'POST':
+        # 入力されたデータの受取
+        results[labels[3]] = request.POST.getlist("four")
+        ret = 'OK'
+        c = {'results': results, 'ret': ret}
+    else:
+        form = forms.PostTwiForm()
+        choice1 = []
+        for i in range(3):
+            choice1.append(('1', i))
+        # choice1.append(('2', '動的選択肢２'))
+        # choice1.append(('3', '動的選択肢３'))
+        # choice1.append(('4', '動的選択肢４'))
+        form.fields['four'].choices = choice1
+        form.fields['four'].initial = ['2']
+        c = {'form': form, 'ret': ret}
+        # CFRF対策（必須）
+        c.update(csrf(request))
+    return render(request, 'post-twi.html', c)

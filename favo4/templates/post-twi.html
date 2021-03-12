@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+    {% block title %}テオ{% endblock %}
+    {% block contents %}
+            <form action="" method="post">{% csrf_token %}
+        {% for field in form %}
+    	    <div>
+    	        <div>
+            	    {{ field.label_tag }}
+               </div>
+    	    	<div>
+    		    	{% for c in field %}
+    			    {{ c }}
+    			    {% endfor %}
+         		</div>
+    	    </div>
+    {% endfor %}
+            <div class="col-lg-3">
+	        	    <button type="submit" class="btn btn-primary">送信する</button>
+    			</div>
+            </form>
+{% endblock %}

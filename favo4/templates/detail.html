@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}詳細{% endblock %}
 {% block contents %}
-{% for i in object_list2 %}
-    {{ i.chara_name }}
-    <img src="{{ i.photo.url }}">
+    {{ object.title }}
+{% for chara in object.chara_set.all %}
+    <form>
+    <label><img src="{{ chara.photo.url }}">
+    <input type="checkbox" value="a">
+    </label>
+        <a href="{% url 'favo4:index'%}">わい</a>
+    <input type="hidden" value="{{ chara.chara_name }}">
+    <input type="submit" value="name">
+    </form>
 {% endfor %}
 {% endblock %}
