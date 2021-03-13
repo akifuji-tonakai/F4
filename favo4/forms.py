@@ -21,9 +21,24 @@ CharaFormset = forms.inlineformset_factory(
 )
 
 
-class PostTwiForm(forms.Form):
-    four = forms.MultipleChoiceField(
-        required=False,
-        disabled=False,
-        widget=forms.CheckboxSelectMultiple(attrs={
-               'id': 'four'}))
+# class PostTwiForm(forms.Form):
+#     four = forms.MultipleChoiceField(
+#         required=False,
+#         disabled=False,
+#         widget=forms.CheckboxSelectMultiple(attrs={
+#                'id': 'four'}))
+#
+# PostTwiForm = forms.formset_factory(
+#
+# )
+# class PostTwiForm(forms.Form):
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         for field in self.fields.values():
+#             field.widget.attrs['class'] = 'form-control'
+#
+#     class Meta:
+#         model = Content
+#         fields = None
+#

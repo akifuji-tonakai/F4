@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
-    {% block title %}テオ{% endblock %}
+    {% block title %}ポスト{% endblock %}
     {% block contents %}
-            <form action="" method="post">{% csrf_token %}
-        {% for field in form %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for chara in content.chara_set.all %}
     	    <div>
     	        <div>
-            	    {{ field.label_tag }}
-               </div>
-    	    	<div>
-    		    	{% for c in field %}
-    			    {{ c }}
-    			    {% endfor %}
+
+
+                     <label>
+                         <img src="{{ chara.photo.url }}" alt="{{ chara.chara_name }}">
+                    <input type="checkbox" name="choice" id="choice{{ forloop.counter }}" value="{{ chara.id }}">
+                    </label>
          		</div>
     	    </div>
-    {% endfor %}
+                {% endfor %}
             <div class="col-lg-3">
 	        	    <button type="submit" class="btn btn-primary">送信する</button>
     			</div>
