@@ -66,7 +66,7 @@ def f4_post_twi_view(request, pk):
         selected_choice = request.POST.getlist('choice')
         box = []
         for i in selected_choice:
-            f4 = PostTwi(user=request.user, chara=Chara.objects.get(pk=i))
+            f4 = PostTwi(user=request.user, chara=Chara.objects.get(pk=i), content=content)
             box.append(f4)
         PostTwi.objects.bulk_create(box)
 

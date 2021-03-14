@@ -30,6 +30,7 @@ class Chara(models.Model):
 class PostTwi(models.Model):
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.CASCADE)
     chara = models.ForeignKey(Chara, verbose_name='キャラ', on_delete=models.CASCADE)
+    content = models.ForeignKey(Content, verbose_name='コンテンツ', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.chara.content.title
+        return self.chara.chara_name, self.content.title, self.user.username

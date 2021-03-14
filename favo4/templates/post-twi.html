@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
     {% block title %}ポスト{% endblock %}
     {% block contents %}
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
             <form action="" method="post">
                 {% csrf_token %}
                 {% for chara in content.chara_set.all %}
@@ -10,7 +11,7 @@
 
                      <label>
                          <img src="{{ chara.photo.url }}" alt="{{ chara.chara_name }}">
-                    <input type="checkbox" name="choice" id="choice{{ forloop.counter }}" value="{{ chara.id }}">
+                    <input type="checkbox" name="choice" id="choice{{ forloop.counter }}" value="{{ chara.id }}" class="check-box-twi">
                     </label>
          		</div>
     	    </div>
