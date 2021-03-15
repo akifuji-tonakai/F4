@@ -32,5 +32,8 @@ class PostTwi(models.Model):
     chara = models.ForeignKey(Chara, verbose_name='キャラ', on_delete=models.CASCADE)
     content = models.ForeignKey(Content, verbose_name='コンテンツ', on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name_plural = 'PostTwi'
+
     def __str__(self):
         return self.chara.chara_name, self.content.title, self.user.username

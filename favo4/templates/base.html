@@ -13,6 +13,10 @@
 <div class="wrapper">
 {#header↓全ページheader#}
     <h1>F4</h1>
+<button type="button" class="button"
+    onclick="location.href='{% url 'social:begin' 'twitter' %}?next={{ next }}'">
+    Twitter でログイン
+</button>
 {#header↓個別ページのheader設定#}
 {% block header %}{% endblock %}
 {#content#}
