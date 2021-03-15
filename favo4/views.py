@@ -6,10 +6,13 @@ from .models import Content, Chara, PostTwi
 from django.urls import reverse_lazy
 from extra_views import CreateWithInlinesView, InlineFormSet
 from .forms import ContentCreateForm, CharaFormset
-from . import forms
+from . import forms, twitter_api
 from django.template.context_processors import csrf
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+import os
+import json
+from django.http.response import JsonResponse
 # Create your views here.
 
 
@@ -60,18 +63,30 @@ def f4_post_twi_view(request, pk):
         # Redisplay the question voting form.
         return render(request, 'post-twi.html', {
             'content': content,
-            'error_message': "You didn't select a choice.",
+            'error_message': "エラーメッセージですよ",
         })
     else:
         selected_choice = request.POST.getlist('choice')
+        user = request.user
         box = []
+        content_box = []
+        image_box = []
         for i in selected_choice:
-            f4 = PostTwi(user=request.user, chara=Chara.objects.get(pk=i), content=content)
+            f4 = PostTwi(user=user, chara=Chara.objects.get(pk=i), content=content)
+            content_box.append(Chara.objects.get(pk=i).chara_name)
+
+            image = Chara.objects.get(pk=i).photo
+            with image.open() as imagefile:
+                imagedata = imagefile.read()
+            image_box.append(imagedata)
             box.append(f4)
         PostTwi.objects.bulk_create(box)
+
+        twi_content = ','.join(content_box)
+        twitter_res = twitter_api.post_twitter(user, twi_content, image_box)
+        JsonResponse(twitter_res)
 
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('favo4:F4-post-twi', args=(content.id,)))
-

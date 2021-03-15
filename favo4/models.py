@@ -36,4 +36,4 @@ class PostTwi(models.Model):
         verbose_name_plural = 'PostTwi'
 
     def __str__(self):
-        return self.chara.chara_name, self.content.title, self.user.username
+        return self.chara.chara_name
