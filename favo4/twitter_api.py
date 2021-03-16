@@ -27,8 +27,7 @@ def post_twitter(user, twi_content, image_box):
         id_img = t_upload.media.upload(media=image)["media_id_string"]
         id_imgs.append(id_img)
 
-    charas = ' \n '.join(twi_content)
-    content = '私が好きなものは…\n\n' + twi_content + '\n\nです！' + '\n#Favorite4' + '\nurl'
+    content = '私が好きなものは…\n\n' + twi_content.replace(',', '\n') + '\n\nです！' + '\n#Favorite4' + '\nurl'
 
     status_update = t.statuses.update(status=content, media_ids=",".join(id_imgs))
 

@@ -27,10 +27,21 @@ class Chara(models.Model):
         return self.chara_name
 
 
+class Favorite4(models.Model):
+    content = models.ForeignKey(Content, verbose_name='コンテンツ', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = 'Favorite4'
+
+    def __str__(self):
+        return self.content.title + ', ' + self.user.username
+
+
 class PostTwi(models.Model):
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.CASCADE)
     chara = models.ForeignKey(Chara, verbose_name='キャラ', on_delete=models.CASCADE)
-    content = models.ForeignKey(Content, verbose_name='コンテンツ', on_delete=models.CASCADE)
+    favorite4 = models.ForeignKey(Favorite4, verbose_name='F4', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'PostTwi'

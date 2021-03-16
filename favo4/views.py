@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse
 from django.contrib import messages
-from .models import Content, Chara, PostTwi
+from .models import Content, Chara, Favorite4, PostTwi
 from django.urls import reverse_lazy
 from extra_views import CreateWithInlinesView, InlineFormSet
 from .forms import ContentCreateForm, CharaFormset
@@ -71,8 +71,12 @@ def f4_post_twi_view(request, pk):
         box = []
         content_box = []
         image_box = []
+        favo4 = Favorite4.objects.create(user=user, content=content).pk
+        # favo4 = favo4create.pk
+
         for i in selected_choice:
-            f4 = PostTwi(user=user, chara=Chara.objects.get(pk=i), content=content)
+            f4 = PostTwi(user=user, chara=Chara.objects.get(pk=i),
+                         favorite4=Favorite4.objects.get(pk=favo4))
             content_box.append(Chara.objects.get(pk=i).chara_name)
 
             image = Chara.objects.get(pk=i).photo
@@ -80,6 +84,7 @@ def f4_post_twi_view(request, pk):
                 imagedata = imagefile.read()
             image_box.append(imagedata)
             box.append(f4)
+
         PostTwi.objects.bulk_create(box)
 
         twi_content = ','.join(content_box)
