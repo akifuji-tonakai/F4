@@ -58,7 +58,7 @@ def add_content(request):
 
 def f4_post_twi_view(request, pk):
     content = get_object_or_404(Content, pk=pk)
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user:
         selected_choice = request.POST.getlist('choice')
         user = request.user
         if len(selected_choice) == 0 or len(selected_choice) >= 5:
@@ -108,20 +108,28 @@ class F4UserPageView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy('favo4:F4-user-page')
 
     def get_object(self):
+        # slugからuserを取ってる？
         object = get_object_or_404(CustomUser, username=self.kwargs.get("username"))
-        if self.request.user.username == object.username:
-            return object
-        else:
-            print("you are not the owner!!")
+        # いずれにせよobjectを返し、表示するuserとログインユーザーを差別化している
+        # if self.request.user.username == object.username:
+        return object
+        # else:
+        #     print("you are not the owner!!")
 
     def get_context_data(self, **kwargs):
+        # クエリセット　usernameと一致したオブジェクトを取得し、配列に返している
+        object = get_object_or_404(CustomUser, username=self.kwargs.get("username"))
         context = super().get_context_data(**kwargs)
         context.update({
-            'object_list2': Favorite4.objects.filter(user=self.request.user),
+            'object_list2': Favorite4.objects.filter(user=object),
         })
         return context
 
     def delete(self, request, *args, **kwargs):
+        object = get_object_or_404(CustomUser, username=self.kwargs.get("username"))
+        if request.user != object:
+            return redirect('https://google.com')
+        # チェックボックスに入った情報複数削除
         selected_choice = request.POST.getlist('del-choice')
         for i in selected_choice:
             Favorite4.objects.filter(pk=i).delete()

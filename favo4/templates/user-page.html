@@ -3,19 +3,26 @@
 {% block contents %}
      <div>
 <div>
+{% if user.is_authenticated and object.username == request.user.username %}
 <form method="POST">
  {% csrf_token %}
+{% endif %}
+
   {% for favo4 in object_list2 %}
-    {{ favo4.content.title }}
+      {{ favo4.content.title }}
+{% if user.is_authenticated and favo4.user.username == request.user.username %}
       <input type="checkbox" name="del-choice" id="del-{{ forloop.counter }}" value="{{ favo4.pk }}">
+      {% endif %}
     {% for one in favo4.posttwi_set.all %}
         <div>
          <img src="{{ one.chara.photo.url }}" alt="{{ one.chara.chara_name }}">
         </div>
      {% endfor %}
   {% endfor %}
+{% if user.is_authenticated and object.username == request.user.username %}
 <input type="submit" name="del-submit" id="submit" value="削除">
 </form>
+{% endif %}
 </div>
 
 </div>
