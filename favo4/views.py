@@ -61,7 +61,7 @@ def f4_post_twi_view(request, pk):
     if request.method == 'POST':
         selected_choice = request.POST.getlist('choice')
         user = request.user
-        if len(selected_choice) == 0 or len(selected_choice) > 5:
+        if len(selected_choice) == 0 or len(selected_choice) >= 5:
             return render(request, 'post-twi.html', {
                 'content': content,
                 'error_message': "未選択か、5つ以上選択しています",
