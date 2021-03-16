@@ -30,6 +30,7 @@ class Chara(models.Model):
 class Favorite4(models.Model):
     content = models.ForeignKey(Content, verbose_name='コンテンツ', on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
 
     class Meta:
         verbose_name_plural = 'Favorite4'

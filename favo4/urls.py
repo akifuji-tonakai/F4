@@ -10,5 +10,6 @@ urlpatterns = [
     path('new/', views.add_content, name="F4-create"),
     path('home/<int:pk>/', views.F4DetailView.as_view(), name="F4-detail"),
     path('home/post/<int:pk>/', views.f4_post_twi_view, name="F4-post-twi"),
-    # path('home/post/<int:pk>/', views.F4PostTwiView.as_view(), name="F4-post-twi"),
+    path('mypage/<slug:username>/', views.F4UserPageView.as_view(), name="F4-user-page")
+
 ]

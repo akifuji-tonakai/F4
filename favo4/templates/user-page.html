@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}マイページ{% endblock %}
+{% block contents %}
+     <div>
+<div>
+<form method="POST">
+ {% csrf_token %}
+  {% for favo4 in object_list2 %}
+    {{ favo4.content.title }}
+      <input type="checkbox" name="del-choice" id="del-{{ forloop.counter }}" value="{{ favo4.pk }}">
+    {% for one in favo4.posttwi_set.all %}
+        <div>
+         <img src="{{ one.chara.photo.url }}" alt="{{ one.chara.chara_name }}">
+        </div>
+     {% endfor %}
+  {% endfor %}
+<input type="submit" name="del-submit" id="submit" value="削除">
+</form>
+</div>
+
+</div>
+{% endblock %}

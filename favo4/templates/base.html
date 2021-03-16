@@ -18,7 +18,10 @@
     onclick="location.href='{% url 'social:begin' 'twitter' %}?next={{ next }}'">
     Twitter でログイン
 </button>
+{% else %}
+    <a href="{% url 'favo4:F4-user-page' user.username %}">マイページ</a>
 {% endif %}
+    <a href="{% url 'favo4:index' %}">ホーム</a>
 {#header↓個別ページのheader設定#}
 {% block header %}{% endblock %}
 {#content#}
