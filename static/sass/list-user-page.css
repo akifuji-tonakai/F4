@@ -8,7 +8,8 @@
     border: pink solid 1px;
     border-radius: 15px;
     padding: 10px;
-    margin: 10px; }
+    margin: 10px;
+    flex-wrap: wrap; }
     .list-box .list-card h2 {
       margin-right: 50px; }
 
