@@ -1,0 +1,23 @@
+.wrap-box {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .wrap-box form .choice-box {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 4px pink solid;
+    border-radius: 30px;
+    padding: 30px; }
+    .wrap-box form .choice-box .chara-label {
+      border: azure solid 1px; }
+  .wrap-box form .submit-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px; }
+
+.check-box-twi {
+  display: none; }
+
+/*# sourceMappingURL=post-twi.css.map */

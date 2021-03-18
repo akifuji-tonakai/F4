@@ -1,29 +1,49 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}マイページ{% endblock %}
+{% block head %}
+    <link href="{% static 'sass/list-user-page.css' %}" rel="stylesheet" type="text/css">{% endblock %}
+
 {% block contents %}
-     <div>
-<div>
-{% if user.is_authenticated and object.username == request.user.username %}
-<form method="POST">
- {% csrf_token %}
-{% endif %}
+    <div class="wrap-box">
+        {% if user.is_authenticated and object.username == request.user.username %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="list-box">
+                    {% for favo4 in object_list2 %}
+                        <div class="list-card">
+                            <label>
+                                <input type="checkbox" name="del-choice" id="del-{{ forloop.counter }}"
+                                       value="{{ favo4.pk }}">
+                                <h2>{{ favo4.content.title }}</h2>
+                            </label>
+                            {% for one in favo4.posttwi_set.all %}
+                                <div>
+                                    <img src="{{ one.chara.photo.url }}" alt="{{ one.chara.chara_name }}" width="250px">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="del-btn">
+                    <input type="submit" name="del-submit" id="submit" value="削除" class="btn btn-danger">
+                </div>
+            </form>
+        {% else %}
+            <div class="list-box">
 
-  {% for favo4 in object_list2 %}
-      {{ favo4.content.title }}
-{% if user.is_authenticated and favo4.user.username == request.user.username %}
-      <input type="checkbox" name="del-choice" id="del-{{ forloop.counter }}" value="{{ favo4.pk }}">
-      {% endif %}
-    {% for one in favo4.posttwi_set.all %}
-        <div>
-         <img src="{{ one.chara.photo.url }}" alt="{{ one.chara.chara_name }}">
-        </div>
-     {% endfor %}
-  {% endfor %}
-{% if user.is_authenticated and object.username == request.user.username %}
-<input type="submit" name="del-submit" id="submit" value="削除">
-</form>
-{% endif %}
-</div>
+                {% for favo4 in object_list2 %}
+                    <div class="list-card">
+                        <h2>{{ favo4.content.title }}</h2>
+                        {% for one in favo4.posttwi_set.all %}
+                            <div>
+                                <img src="{{ one.chara.photo.url }}" alt="{{ one.chara.chara_name }}" width="250px">
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
 
-</div>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

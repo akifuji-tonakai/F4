@@ -27,11 +27,6 @@ class F4ListView(generic.ListView):
     paginate_by = 10
 
 
-class F4DetailView(generic.DetailView):
-    template_name = "detail.html"
-    model = Content
-
-
 def add_content(request):
     form = ContentCreateForm(request.POST or None)
     context = {'form': form}
@@ -100,7 +95,7 @@ def f4_post_twi_view(request, pk):
         return redirect('https://google.com')
 
 
-class F4UserPageView(LoginRequiredMixin, generic.DeleteView):
+class F4UserPageView(generic.DeleteView):
     template_name = "user-page.html"
     model = Favorite4, PostTwi
     slug_field = "username"
@@ -121,7 +116,7 @@ class F4UserPageView(LoginRequiredMixin, generic.DeleteView):
         object = get_object_or_404(CustomUser, username=self.kwargs.get("username"))
         context = super().get_context_data(**kwargs)
         context.update({
-            'object_list2': Favorite4.objects.filter(user=object),
+            'object_list2': Favorite4.objects.filter(user=object).order_by('created_at').reverse(),
         })
         return context
 

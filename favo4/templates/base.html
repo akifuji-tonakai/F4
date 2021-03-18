@@ -6,26 +6,43 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>{% block title %}{% endblock %}</title>
-    <link href="{% static 'sass/test.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'sass/main.css' %}" rel="stylesheet" type="text/css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous">
     {% block head %}{% endblock %}
 </head>
 <body>
-<div class="wrapper">
+<header>
+<div>
+<a href="{% url 'favo4:index' %}">始めての方に</a></div>
 {#header↓全ページheader#}
-    <h1>F4</h1>
+<a href="{% url 'favo4:F4-list' %}" class="site-title"><h1>Favorite4</h1></a>
+
+<div class="user-btn">
 {% if not user.is_authenticated %}
-<button type="button" class="button"
+<button type="button" class="btn"
     onclick="location.href='{% url 'social:begin' 'twitter' %}?next={{ next }}'">
     Twitter でログイン
 </button>
 {% else %}
-    <a href="{% url 'favo4:F4-user-page' user.username %}">マイページ</a>
+    <button type="button" class="btn" onclick="location.href='{% url 'favo4:F4-user-page' user.username %}'">マイページ</button>
+    <button type="button" class="btn" onclick="location.href='{% url 'account_logout' %}'">ログアウト</button>
 {% endif %}
-    <a href="{% url 'favo4:index' %}">ホーム</a>
+</div>
 {#header↓個別ページのheader設定#}
 {% block header %}{% endblock %}
+</header>
+
+<div class="wrapper">
+    {% block contents %}
 {#content#}
-{% block contents %}{% endblock %}
+    {% endblock %}
 </div>
+<footer>
+©︎Favorite4
+    {% block footer %}{% endblock %}
+</footer>
 </body>
 </html>

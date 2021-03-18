@@ -22,8 +22,8 @@ from . import settings_common, settings_dev
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('favo4.urls')),
-    path('accounts/', include('allauth.urls')),
-    path('', include('social_django.urls')),        # 追加
+    path('accounts/any/', include('allauth.urls')),
+    path('', include('social_django.urls')),  # 追加
 ]
 
 urlpatterns += static(settings_common.MEDIA_URL, document_root=settings_dev.MEDIA_ROOT)
