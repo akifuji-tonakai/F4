@@ -24,7 +24,6 @@ class HomeView(generic.TemplateView):
 class F4ListView(generic.ListView):
     template_name = "list.html"
     model = Content
-    paginate_by = 10
 
 
 def add_content(request):
@@ -84,7 +83,7 @@ def f4_post_twi_view(request, pk):
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-
+        messages.success(request, 'twitterに投稿しました')
         return HttpResponseRedirect(reverse('favo4:F4-post-twi', args=(content.id,)))
 
     elif request.method == 'GET':

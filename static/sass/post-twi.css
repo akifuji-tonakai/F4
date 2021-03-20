@@ -3,21 +3,37 @@
   display: flex;
   flex-direction: column;
   align-items: center; }
-  .wrap-box form .choice-box {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    border: 4px pink solid;
-    border-radius: 30px;
-    padding: 30px; }
-    .wrap-box form .choice-box .chara-label {
-      border: azure solid 1px; }
-  .wrap-box form .submit-button {
-    display: flex;
-    justify-content: center;
-    margin-top: 100px; }
+
+.choice-copy_right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 4px pink solid;
+  border-radius: 30px;
+  padding: 30px; }
+
+.choice-box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; }
+
+.submit-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px; }
 
 .check-box-twi {
   display: none; }
+
+.click-border {
+  border: skyblue 5px solid; }
+
+.confirm-select {
+  display: none;
+  align-items: center; }
+
+.btn-mt {
+  margin-top: 50px; }
 
 /*# sourceMappingURL=post-twi.css.map */

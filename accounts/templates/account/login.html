@@ -5,6 +5,18 @@
 {% block active_login %}active{% endblock %}
 
 {% block contents %}
+    <div class="success">
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="alert alert-success" role="alert"><strong>{{ message }}</strong></p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    <ul class="index-ul">
+    <li>ご利用ありがとうございます</li>
+    <li>製作者twitter→<a class="inline" href="https://twitter.com/tonakai_it" target="_blank">@tonakai_it</a></li>
+    <li><a href="{% url 'favo4:F4-list' %}" class="btn btn-success">ホームへ</a></li>
+    </ul>
 {#<div class="container">#}
 {#    <div class="row">#}
 {#        <div class="my-div-style">#}

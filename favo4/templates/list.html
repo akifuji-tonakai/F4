@@ -13,10 +13,12 @@
                     <div class="a">
                         <a href="{% url 'favo4:F4-post-twi' content.pk %}"><small>click!</small>
                             <h2>{{ content.title }}</h2></a>
+                        <small>{{ content.copyright }}</small>
                     </div>
                     {% for chara in content.chara_set.all|child_5:content.pk %}
                         <div>
-                            <img src="{{ chara.photo.url }}" alt="{{ chara.chara_name }}" width="200px">
+                            <img src="{{ chara.photo.url }}" alt="{{ chara.chara_name }}"
+                                 width="120px" oncontextmenu="return false;">
                         </div>
                     {% endfor %}
                 </div>

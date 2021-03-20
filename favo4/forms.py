@@ -11,11 +11,11 @@ class ContentCreateForm(forms.ModelForm):
 
     class Meta:
         model = Content
-        fields = 'title',
+        fields = 'title', 'copyright', 'hashtag'
         # fields = '__all__' ↑userをテンプレート排除してます
 
 
 CharaFormset = forms.inlineformset_factory(
     Content, Chara, fields='__all__',
-    extra=10, max_num=100, can_delete=False
+    extra=30, max_num=100, can_delete=False
 )

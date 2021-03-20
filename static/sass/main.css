@@ -52,4 +52,8 @@ body {
     margin-top: 100px;
     margin-bottom: 30px; }
 
+#chara-area {
+  display: flex;
+  flex-wrap: wrap; }
+
 /*# sourceMappingURL=main.css.map */

@@ -5,23 +5,37 @@ from django.db import models
 
 
 class Content(models.Model):
-    title = models.CharField(verbose_name='タイトル', max_length=8)
-    user = models.ForeignKey(CustomUser, verbose_name="ユーザー", on_delete=models.CASCADE)
+    title = models.CharField(verbose_name='タイトル', max_length=15)
+    copyright = models.CharField(verbose_name='権利表記', default='©︎', max_length=100)
+    hashtag = models.CharField(verbose_name='ハッシュタグ', default='#Favorite4', max_length=20)
+    user = models.ForeignKey(CustomUser, verbose_name="ユーザー", on_delete=models.DO_NOTHING)
 
     class Meta:
-        verbose_name_plural = 'Content'
+        verbose_name_plural = 'コンテンツ'
 
     def __str__(self):
         return self.title
+
+
+class Subclass(models.Model):
+    sub_name = models.CharField(verbose_name='サブクラス', max_length=25)
+    sub_image = models.ImageField(verbose_name='サブクラス画像', null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'サブクラス'
+
+    def __str__(self):
+        return self.sub_name
 
 
 class Chara(models.Model):
     chara_name = models.CharField(verbose_name='キャラ名', max_length=10)
     photo = models.ImageField(verbose_name='キャラ画像')
     content = models.ForeignKey(Content, verbose_name='コンテンツ', on_delete=models.CASCADE)
+    subclass = models.ForeignKey(Subclass, verbose_name='サブクラス', null=True, blank=True, on_delete=models.DO_NOTHING)
 
     class Meta:
-        verbose_name_plural = 'Chara'
+        verbose_name_plural = 'キャラ'
 
     def __str__(self):
         return self.chara_name
@@ -45,7 +59,7 @@ class PostTwi(models.Model):
     favorite4 = models.ForeignKey(Favorite4, verbose_name='F4', on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name_plural = 'PostTwi'
+        verbose_name_plural = 'マイページ'
 
     def __str__(self):
         return self.chara.chara_name

@@ -7,26 +7,34 @@
 {% block contents %}
     <div class="wrap-box">
         {% if user.is_authenticated and object.username == request.user.username %}
+            <button type="button" class="btn btn-danger del-toggle">削除機能</button>
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="list-box">
                     {% for favo4 in object_list2 %}
                         <div class="list-card">
-                            <label>
-                                <input type="checkbox" name="del-choice" id="del-{{ forloop.counter }}"
-                                       value="{{ favo4.pk }}">
-                                <h2>{{ favo4.content.title }}</h2>
-                            </label>
+                            <div class="a">
+                                <label class="block">
+                                    <input type="checkbox" name="del-choice" id="del{{ forloop.counter }}"
+                                           value="{{ favo4.pk }}" class="del-check-box">
+                                    <h4>{{ favo4.content.title }}</h4>
+                                </label>
+                                <small>{{ favo4.content.copyright }}</small>
+                            </div>
                             {% for one in favo4.posttwi_set.all %}
                                 <div>
-                                    <img src="{{ one.chara.photo.url }}" alt="{{ one.chara.chara_name }}" width="250px">
+                                    <img src="{{ one.chara.photo.url }}" alt="{{ one.chara.chara_name }}"
+                                         width="200px" oncontextmenu="return false;">
                                 </div>
                             {% endfor %}
                         </div>
+                    {% empty %}
+                        登録がありませんm(_ _)m
                     {% endfor %}
+
                 </div>
                 <div class="del-btn">
-                    <input type="submit" name="del-submit" id="submit" value="削除" class="btn btn-danger">
+                    <input type="submit" name="del-submit" id="submit" value="削除" class="btn btn-danger del-submit">
                 </div>
             </form>
         {% else %}
@@ -34,16 +42,24 @@
 
                 {% for favo4 in object_list2 %}
                     <div class="list-card">
-                        <h2>{{ favo4.content.title }}</h2>
+                        <div>
+                            <h4>{{ favo4.content.title }}</h4>
+                            <small>{{ favo4.content.copyright }}</small>
+                        </div>
                         {% for one in favo4.posttwi_set.all %}
                             <div>
-                                <img src="{{ one.chara.photo.url }}" alt="{{ one.chara.chara_name }}" width="250px">
+                                <img src="{{ one.chara.photo.url }}" alt="{{ one.chara.chara_name }}"
+                                     width="200px" oncontextmenu="return false;">
                             </div>
                         {% endfor %}
                     </div>
+                {% empty %}
+                    登録がありませんm(_ _)m
                 {% endfor %}
-
             </div>
         {% endif %}
     </div>
+{% endblock %}
+{% block footer %}
+    <script src="{% static 'js/del_toggle.js' %}" type="text/javascript"></script>
 {% endblock %}
