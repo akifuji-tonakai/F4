@@ -1,0 +1,23 @@
+.wrap-box {
+  display: flex;
+  width: 100%; }
+  .wrap-box .left-regulation {
+    width: 50%; }
+    .wrap-box .left-regulation .usual-regulation {
+      text-align: justify;
+      text-justify: inter-ideograph;
+      border: gray solid 3px;
+      border-radius: 5px;
+      padding: 10px; }
+  .wrap-box .right-regulation {
+    width: 50%; }
+    .wrap-box .right-regulation .products-regulation {
+      margin: 10px;
+      border: pink solid 3px;
+      border-radius: 5px;
+      padding-left: 50px; }
+
+.right-intention {
+  text-align: center; }
+
+/*# sourceMappingURL=regulations.css.map */

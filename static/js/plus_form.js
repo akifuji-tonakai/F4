@@ -76,6 +76,7 @@ $(function(){
         totalManageElement.attr('value', currentFileCount);
     });
 });
+
 // $(function(){
 //      var totalManageElement = $('input#id_chara_set-TOTAL_FORMS');
 // //     // valueをintに

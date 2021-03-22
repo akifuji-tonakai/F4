@@ -62,12 +62,12 @@ def f4_post_twi_view(request, pk):
             })
         favo4 = Favorite4.objects.create(user=user, content=content).pk
         box = []
-        content_box = []
+        chara_name_box = []
         image_box = []
         for i in selected_choice:
             f4 = PostTwi(user=user, chara=Chara.objects.get(pk=i),
                          favorite4=Favorite4.objects.get(pk=favo4))
-            content_box.append(Chara.objects.get(pk=i).chara_name)
+            chara_name_box.append(Chara.objects.get(pk=i).chara_name)
 
             image = Chara.objects.get(pk=i).photo
             with image.open() as imagefile:
@@ -77,8 +77,8 @@ def f4_post_twi_view(request, pk):
 
         PostTwi.objects.bulk_create(box)
 
-        twi_content = ','.join(content_box)
-        twitter_res = twitter_api.post_twitter(user, twi_content, image_box)
+        twi_content = ','.join(chara_name_box)
+        twitter_res = twitter_api.post_twitter(user, twi_content, image_box, content)
         JsonResponse(twitter_res)
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
@@ -128,3 +128,11 @@ class F4UserPageView(generic.DeleteView):
         for i in selected_choice:
             Favorite4.objects.filter(pk=i).delete()
         return HttpResponseRedirect(reverse('favo4:F4-user-page', args=(request.user,)))
+
+
+class F4RegulationsView(generic.TemplateView):
+    template_name = "regulations.html"
+
+
+class F4InquiryView(generic.TemplateView):
+    template_name = "inquiry.html"

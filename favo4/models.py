@@ -9,6 +9,7 @@ class Content(models.Model):
     copyright = models.CharField(verbose_name='権利表記', default='©︎', max_length=100)
     hashtag = models.CharField(verbose_name='ハッシュタグ', default='#Favorite4', max_length=20)
     user = models.ForeignKey(CustomUser, verbose_name="ユーザー", on_delete=models.DO_NOTHING)
+    flavor_text = models.CharField(verbose_name='フレーバーテキスト', default='私が好きなものは', max_length=30)
 
     class Meta:
         verbose_name_plural = 'コンテンツ'

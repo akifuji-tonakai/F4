@@ -11,7 +11,7 @@ class ContentCreateForm(forms.ModelForm):
 
     class Meta:
         model = Content
-        fields = 'title', 'copyright', 'hashtag'
+        fields = 'title', 'copyright', 'hashtag', 'flavor_text'
         # fields = '__all__' ↑userをテンプレート排除してます
 
 

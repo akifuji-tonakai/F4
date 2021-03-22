@@ -5,7 +5,7 @@ from social_django.models import UserSocialAuth
 import twitter
 
 
-def post_twitter(user, twi_content, image_box):
+def post_twitter(user, twi_content, image_box, content):
     social_auth = UserSocialAuth.objects.get(user=user, provider='twitter')
 
     client_key = social_auth.extra_data['access_token']['oauth_token']
@@ -27,8 +27,9 @@ def post_twitter(user, twi_content, image_box):
         id_img = t_upload.media.upload(media=image)["media_id_string"]
         id_imgs.append(id_img)
 
-    content = '私が好きなものは…\n\n' + twi_content.replace(',', '\n') + '\n\nです！' + '\n#Favorite4' + '\nurl'
+    content_all = content.flavor_text + '…\n\n' + twi_content.replace(',', '\n') + '\n\nです！'
+    content_all += '\n#Favorite4' + '\n' + content.hashtag + '\nurl'
 
-    status_update = t.statuses.update(status=content, media_ids=",".join(id_imgs))
+    status_update = t.statuses.update(status=content_all, media_ids=",".join(id_imgs))
 
     return status_update
