@@ -1,26 +1,22 @@
 {% extends 'base.html' %}
-
-{% block title %}サインアップ | Private Diary{% endblock %}
-
-{% block active_signup %}active{% endblock %}
-
+{% load static %}
+{% block title %}{% endblock %}
+{% block head %}
+    <link href="{% static 'sass/signup-withdrawal.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
 {% block contents %}
-{#<div class="container">#}
-{#    <div class="row">#}
-{#        <div class="my-div-style">#}
-{#            <h1>サインアップ</h1>#}
-{#            <form method="post" action="{% url 'account_signup' %}">#}
-{#                {% csrf_token %}#}
-{##}
-{#                {{ form.as_p }}#}
-{##}
-{#                {% if redirect_field_value %}#}
-{#                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />#}
-{#                {% endif %}#}
-{##}
-{#                <button class="btn btn-primary" type="submit">登録</button>#}
-{#            </form>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
+    <div class="wrap-box">
+    <label>
+        <a href="{% url 'favo4:F4-regulations' %}" target="_blank" class="inline">利用規約(2021/3/21)</a>に同意する<input type="checkbox"
+                                                                                                      class="agree">
+    </label>
+    <button type="button" class="btn btn-primary signup" id="submit"
+            onclick="location.href='{% url 'social:begin' 'twitter' %}?next={{ next }}'" disabled>
+        Twitter でログイン
+    </button>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script src="{% static 'js/signup-withdrawal.js' %}" type="text/javascript"></script>
 {% endblock %}

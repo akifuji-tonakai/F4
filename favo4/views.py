@@ -136,3 +136,10 @@ class F4RegulationsView(generic.TemplateView):
 
 class F4InquiryView(generic.TemplateView):
     template_name = "inquiry.html"
+
+
+class F4WithdrawalView(LoginRequiredMixin, generic.DeleteView):
+    template_name = "withdrawal.html"
+    model = CustomUser
+    success_url = reverse_lazy('favo4:F4-list')
+    

@@ -7,6 +7,11 @@
 
 {% block contents %}
     <div class="wrap-box">
+    {% if messages %}
+                {% for message in messages %}
+                    <p class="alert alert-success" role="alert"><strong>{{ message }}</strong></p>
+                {% endfor %}
+            {% endif %}
         <div class="list-box">
             {% for content in content_list %}
                 <div class="list-card">

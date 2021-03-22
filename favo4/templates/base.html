@@ -22,13 +22,21 @@
 
     <div class="user-btn">
         {% if not user.is_authenticated %}
+{#            <button type="button" class="btn"#}
+{#                    onclick="location.href='{% url 'social:begin' 'twitter' %}?next={{ next }}'">#}
+{#                Twitter でログイン#}
+{#            </button>#}
             <button type="button" class="btn"
-                    onclick="location.href='{% url 'social:begin' 'twitter' %}?next={{ next }}'">
+                    onclick="location.href='{% url 'account_signup' %}'">
                 Twitter でログイン
             </button>
         {% else %}
+             <button type="button" class="btn"
+                    onclick="location.href='{% url 'favo4:F4-withdrawal' user.pk %}'">
+                退会する
+            </button>
             <button type="button" class="btn" onclick="location.href='{% url 'favo4:F4-user-page' user.username %}'">
-                マイページ
+                {{ user.username }}
             </button>
             <button type="button" class="btn" onclick="location.href='{% url 'account_logout' %}'">ログアウト</button>
         {% endif %}

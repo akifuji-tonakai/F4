@@ -11,4 +11,5 @@ urlpatterns = [
     path('mypage/<slug:username>/', views.F4UserPageView.as_view(), name="F4-user-page"),
     path('regulations/', views.F4RegulationsView.as_view(), name="F4-regulations"),
     path('inquiry/', views.F4InquiryView.as_view(), name="F4-inquiry"),
+    path('withdrawal/<int:pk>/', views.F4WithdrawalView.as_view(), name="F4-withdrawal"),
 ]
