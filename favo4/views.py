@@ -142,4 +142,9 @@ class F4WithdrawalView(LoginRequiredMixin, generic.DeleteView):
     template_name = "withdrawal.html"
     model = CustomUser
     success_url = reverse_lazy('favo4:F4-list')
-    
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+    def delete(self, request, *args, **kwargs):
+        CustomUser.objects.filter(username=request.user.username).delete()
+        return redirect('favo4:F4-list',)

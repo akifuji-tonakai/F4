@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}{% endblock %}
+{% block title %}Favorite4|ログイン{% endblock %}
 {% block head %}
     <link href="{% static 'sass/signup-withdrawal.css' %}" type="text/css" rel="stylesheet">
 {% endblock %}
@@ -14,6 +14,7 @@
             onclick="location.href='{% url 'social:begin' 'twitter' %}?next={{ next }}'" disabled>
         Twitter でログイン
     </button>
+    <a href="{% url 'favo4:F4-list' %}" class="btn btn-success">ホームへ</a>
     </div>
 {% endblock %}
 

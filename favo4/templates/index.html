@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
-{% block title %}テオ{% endblock %}
+{% load static %}
+{% block title %}初めての方へ|Favorite4{% endblock %}
 {% block contents %}
 {#    <a href="{% url 'favo4:F4-list' %}">リスト</a>#}
 {#    <a href="{% url 'favo4:F4-detail'何かしらのpk %}">詳細</a>#}
+    <div class="flex evenly">
     <ul class="index-ul">
     <li>こんにちは</li>
     <li>あなたの好きをもっと手軽に広められたら幸いです</li>
     <li>製作者twitter→<a class="inline" href="https://twitter.com/tonakai_it" target="_blank">@tonakai_it</a></li>
     <li><a href="{% url 'favo4:F4-list' %}" class="btn btn-success">ホームへ</a></li>
     </ul>
+        <div class="sample">
+            <h3 class="tweet-sample">ツイートサンプル</h3>
+
+            <p><img src="{% static 'img/sample.png' %}" alt="" width="400px" class="sample-img"></p>
+        </div>
+    </div>
 {% endblock %}

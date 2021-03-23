@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Favorite4">
+    <meta name="author" content="tonakai_it">
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static 'sass/main.css' %}" rel="stylesheet" type="text/css">
     <!-- CSS only -->
@@ -15,10 +15,15 @@
 </head>
 <body onmousedown="return false;">
 <header>
-    <div>
-        <a href="{% url 'favo4:index' %}">始めての方に</a></div>
+    <div class="flex">
+        <div>
+        <a href="{% url 'favo4:index' %}" class="btn">初めての方に</a></div>
+        <div>
+<a href="{% url 'favo4:F4-inquiry' %}" class="btn">お問い合わせ</a></div>
+    </div>
     {#header↓全ページheader#}
     <a href="{% url 'favo4:F4-list' %}" class="site-title"><h1>Favorite4</h1></a>
+
 
     <div class="user-btn">
         {% if not user.is_authenticated %}
@@ -32,7 +37,7 @@
             </button>
         {% else %}
              <button type="button" class="btn"
-                    onclick="location.href='{% url 'favo4:F4-withdrawal' user.pk %}'">
+                    onclick="location.href='{% url 'favo4:F4-withdrawal' user.username %}'">
                 退会する
             </button>
             <button type="button" class="btn" onclick="location.href='{% url 'favo4:F4-user-page' user.username %}'">
@@ -53,6 +58,7 @@
 <footer>
     ω︎Favorite4
     <script src="{% static 'js/jquery.js' %}" type="text/javascript"></script>
+    <a href="{% url 'favo4:F4-regulations' %}"><small>利用規約</small></a>
     {% block footer %}{% endblock %}
 </footer>
 </body>

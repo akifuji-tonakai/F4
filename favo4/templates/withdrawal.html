@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}{% endblock %}
+{% block title %}退会|Favorite4{% endblock %}
 {% block head %}
     <link href="{% static 'sass/signup-withdrawal.css' %}" type="text/css" rel="stylesheet">
 {% endblock %}
@@ -59,6 +59,7 @@
             {% csrf_token %}
             <input type="submit" class="btn btn-danger" value="退会" id="withdrawal">
         </form>
+
         ご利用ありがとうございました！
     </div>
 {% endblock %}
