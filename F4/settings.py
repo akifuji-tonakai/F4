@@ -17,46 +17,79 @@ MEDIA_ROOT = '/usr/share/nginx/html/media'
 # EMAIL_BACKEND = 'django_ses.SESBackend'
 
 # ロギング
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#
+#     # ロガーの設定
+#     'loggers': {
+#         # Djangoが利用するロガー
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'INFO',
+#         },
+#         # diaryアプリケーションが利用するロガー
+#         'diary': {
+#             'handlers': ['file'],
+#             'level': 'INFO',
+#         },
+#     },
+#
+#     # ハンドラの設定
+#     'handlers': {
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.handlers.TimedRotatingFileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logs/django.log'),
+#             'formatter': 'prod',
+#             'when': 'D',  # ログローテーション(新しいファイルへの切り替え)間隔の単位(D=日)
+#             'interval': 1,  # ログローテーション間隔(1日単位)
+#             'backupCount': 7,  # 保存しておくログファイル数
+#         },
+#     },
+#
+#     # フォーマッタの設定
+#     'formatters': {
+#         'prod': {
+#             'format': '\t'.join([
+#                 '%(asctime)s',
+#                 '[%(levelname)s]',
+#                 '%(pathname)s(Line:%(lineno)d)',
+#                 '%(message)s'
+#             ])
+#         },
+#     }
+# }
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-
-    # ロガーの設定
+    'formatters': {
+        'production': {
+            'format': '%(asctime)s [%(levelname)s] %(process)d %(thread)d '
+                      '%(pathname)s:%(lineno)d %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'logs/django.log',  #環境に合わせて変更
+            'formatter': 'production',
+            'level': 'INFO',
+        },
+    },
     'loggers': {
-        # Djangoが利用するロガー
+        # 自作したログ出力
+        '': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        # Djangoの警告・エラー
         'django': {
             'handlers': ['file'],
             'level': 'INFO',
-        },
-        # diaryアプリケーションが利用するロガー
-        'diary': {
-            'handlers': ['file'],
-            'level': 'INFO',
+            'propagate': False,
         },
     },
-
-    # ハンドラの設定
-    'handlers': {
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/django.log'),
-            'formatter': 'prod',
-            'when': 'D',  # ログローテーション(新しいファイルへの切り替え)間隔の単位(D=日)
-            'interval': 1,  # ログローテーション間隔(1日単位)
-            'backupCount': 7,  # 保存しておくログファイル数
-        },
-    },
-
-    # フォーマッタの設定
-    'formatters': {
-        'prod': {
-            'format': '\t'.join([
-                '%(asctime)s',
-                '[%(levelname)s]',
-                '%(pathname)s(Line:%(lineno)d)',
-                '%(message)s'
-            ])
-        },
-    }
 }
