@@ -62,3 +62,11 @@ URL*~→メンテ中😉
  - サブクラスやキャラで絞る
  - 管理者側のキャラ追加機能
  - 4つに絞る機能
+
+　## 技術スタック
+ - django
+ - Twitter API 1
+ - mysql
+ - ec2
+ - nginx
+ - gunicorn
