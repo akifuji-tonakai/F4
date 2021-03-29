@@ -61,12 +61,13 @@ URL*~→メンテ中😉
  ## 実装予定の機能
  - サブクラスやキャラで絞る
  - 管理者側のキャラ追加機能
- - 4つに絞る機能
+ - 4つに絞る機能<br>
 
-　## 技術スタック
- - django
+
+## 技術スタック
+ - Django webアプリケーション作成フレームワーク
  - Twitter API 1
- - mysql
- - ec2
- - nginx
- - gunicorn
+ - MySql RDB
+ - ec2 仮想サーバーインスタンス
+ - nginx webサーバー
+ - gunicorn ゲートウェイ
