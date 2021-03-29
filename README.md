@@ -71,3 +71,5 @@ URL*~→メンテ中😉
  - ec2 仮想サーバーインスタンス
  - nginx webサーバー
  - gunicorn ゲートウェイ
+
+<a href="https://gyazo.com/150d8146d696356c4751f6044894ddb9"><img src="https://i.gyazo.com/150d8146d696356c4751f6044894ddb9.png" alt="Image from Gyazo" width="927"/></a>
